@@ -2,6 +2,11 @@ from flask import Flask, render_template, request, session, redirect, url_for
 
 app = Flask(__name__)
 
+#This will be the general blog (before logging in)
+@app.route("/")
+def blog():
+    return render_template("blog.html")
+
 @app.route("/login", methods = ["GET", "POST"])
 def login():
     if request.form.has_key("username") and request.form.has_key("password"):
@@ -23,4 +28,4 @@ def page2():
 if __name__ == "__main__":
     app.debug = True
     app.secret_key = "secret_key"
-    app.run(host='0.0.0.0', port=8000)
+    app.run()
