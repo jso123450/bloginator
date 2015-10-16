@@ -15,6 +15,7 @@ def login():
     if request.form.has_key("username") and request.form.has_key("password"):
         if request.form["username"] == "user1" and request.form["password"] == "pass1":
             session["loggedIn"] = True
+            session["username"] = request.form["username"]
             return redirect(url_for("blog"))
         else:
             return render_template("login.html", error = "Invalid username or password")
@@ -24,10 +25,10 @@ def login():
         else:
             return render_template("login.html")
 
-@app.route("/page2")
-def page2():
+@app.route("/myposts")
+def myposts():
     if session.has_key("loggedIn") and session["loggedIn"]:
-        return render_template("page2.html")
+        return render_template("myposts.html", username = session["username"])
     else:
         return redirect(url_for("login"))
 
