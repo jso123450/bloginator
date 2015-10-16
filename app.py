@@ -38,6 +38,13 @@ def logout():
         session["loggedIn"] = False
     return redirect(url_for("blog"))
 
+@app.route("/createpost")
+def createpost():
+    if session.has_key("loggedIn") and session["loggedIn"]:
+        return render_template("createpost.html")
+    else:
+        return redirect(url_for("login"))
+
 if __name__ == "__main__":
     app.debug = True
     app.secret_key = "secret_key"
