@@ -1,0 +1,6 @@
+TO DO:
+
+- Page for creating new posts
+- Have edit post button next to every post? 
+	- Be able to click and view individual post and see edit there?
+	
