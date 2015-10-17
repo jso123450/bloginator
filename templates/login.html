@@ -46,16 +46,25 @@
       
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav navbar-right">
+         <ul class="nav navbar-nav navbar-right">
           <li>
 	    <a href="/" target="_top">Home</a>
 	  </li>
-	  <li>
-	    <a href="/login" target="_top">Login</a>
-	  </li>
+	  {% if session["loggedIn"] %}
 	  <li>
 	    <a href="/myposts" target="_top">My Posts</a>
 	  </li>
+	  <li>
+		<a href="/createpost" target="_top">Create</a>
+	  </li>
+	  <li>
+		<a href="/logout" target="_top">Logout</a>
+	  </li>
+	  {% else %}
+		<li>
+			<a href="/login" target="_top">Login</a>
+		</li>
+	  {% endif %}
 	</ul>
         </div>
         <!-- /.navbar-collapse -->

@@ -6,7 +6,7 @@ app = Flask(__name__)
 @app.route("/")
 def blog():
     if session.has_key("loggedIn") and session["loggedIn"]:
-        return render_template("blog.html", loggedIn = True)
+        return render_template("blog.html", loggedIn = True, username = session["username"])
     else:
         return render_template("blog.html", loggedIn = False)
 
@@ -41,11 +41,11 @@ def logout():
 @app.route("/createpost")
 def createpost():
     if session.has_key("loggedIn") and session["loggedIn"]:
-        return render_template("createpost.html")
+	    return render_template("createpost.html", username = session["username"])
     else:
         return redirect(url_for("login"))
 
 if __name__ == "__main__":
     app.debug = True
     app.secret_key = "secret_key"
-    app.run(host='0.0.0.0',port=8000)
+    app.run()
