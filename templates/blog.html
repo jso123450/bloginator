@@ -108,29 +108,14 @@
 	<a href="/logout" class="btn btn-default btn-xl">
 	  Log out
 	</a>
-	
-	<!--Format for blog posts (Pinterest-style tiles)
-	<div class="grid">
-		<div class="post-row">
-				<div class="item">
-					<a href="http://www.cambio.com/2015/08/04/builtbygirls-project-update-vlog-weve-done-things/" class="well">
-						<div class="img-container">
-							<img src="img/posts/collab5.jpg">
-						</div>
-						<div class="time-tag">August 4, 2015</div>
-						<div class="info">
-							<h2 class="post-title">
-								#BUILTBYGIRLS Project Update Vlog: We've Done Things!
-							</h2>
-							<h3 class="post-subtitle">
-								Another update from us interns, this time about our projects WOOT WOOT
-							</h3>
-						</div>
-					</a>
-                </div>
-		</div>
-	</div>
-	-->
+
+	{% if blogs %}
+	{% for i in blogs %}
+	<h2 class="post-title">{{i[0]}}</h2>
+	{{i[1]}}
+	{% endfor %}
+	{% endif %}
+      
 	
 	{% endif %}
 	<!--

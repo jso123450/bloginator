@@ -7,7 +7,9 @@ app = Flask(__name__)
 @app.route("/")
 def blog():
     if session.has_key("loggedIn") and session["loggedIn"]:
-        return render_template("blog.html", loggedIn = True, username = session["username"])
+        blogs = db_methods.getPosts()
+        print blogs
+        return render_template("blog.html", loggedIn = True, username = session["username"], blogs = blogs)
     else:
         return render_template("blog.html", loggedIn = False)
 
@@ -42,9 +44,11 @@ def signup():
         else:
             return render_template("signup.html")
 
-@app.route("/myposts")
+@app.route("/myposts", methods = ["GET", "POST"])
 def myposts():
     if session.has_key("loggedIn") and session["loggedIn"]:
+        if request.form.has_key("post") and request.form["post"] != "":
+            db_methods.addPost(request.form["title"], request.form["post"], session["username"])
         return render_template("myposts.html", username = session["username"])
     else:
         return redirect(url_for("login"))
