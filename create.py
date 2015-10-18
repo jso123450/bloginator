@@ -4,13 +4,13 @@ conn = sqlite3.connect("blog.db")
 
 c = conn.cursor()
 
-q = "create table users(Username text, UserID integer)"
+q = "CREATE TABLE users(Username text, Password text, UserID integer)"
 c.execute(q)
 
-q = "create table blogs(title text, content text, BlogID integer, UserID integer)"
+q = "CREATE TABLE blogs(Title text, Content text, BlogID integer, UserID integer)"
 c.execute(q)
 
-q = "create table comments(content text, CommentID integer, BlogID integer, UserID integer)"
+q = "CREATE TABLE comments(Content text, CommentID integer, BlogID integer, UserID integer)"
 c.execute(q)
 
 conn.commit() 

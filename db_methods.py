@@ -4,3 +4,22 @@ import sqlite3
 
 def checkUser(username, password):
     return False
+
+def countUsers():
+    conn = sqlite3.connect("blog.db")
+    c = conn.cursor()
+    q = "SELECT UserID FROM users;"
+    numUsers = 0
+    for i in c.execute(q):
+        numUsers += 1
+    conn.commit()
+    conn.close()
+    return numUsers
+    
+def addUser(username, password):
+    conn = sqlite3.connect("blog.db")
+    c = conn.cursor()
+    q = "INSERT INTO users VALUES('" + username + "','" + password + "'," + str(countUsers()) + ");"
+    c.execute(q)
+    conn.commit()
+    conn.close()
