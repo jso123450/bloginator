@@ -25,6 +25,22 @@ def login():
         else:
             return render_template("login.html")
 
+@app.route("/signup", methods = ["GET", "POST"])
+def signup():
+    if session.has_key("loggedIn") and session["loggedIn"]:
+        return redirect(url_for("blog"))
+    else:
+        if request.form.has_key("username"):
+            if request.form["password"] != request.form["confirmPassword"]:
+                return render_template("signup.html", error = "Password does not match confirm password")
+            else:
+                #Username and password should be added to the database here
+                session["loggedIn"] = True
+                session["username"] = request.form["username"]
+                return redirect(url_for("myposts"))
+        else:
+            return render_template("signup.html")
+
 @app.route("/myposts")
 def myposts():
     if session.has_key("loggedIn") and session["loggedIn"]:
@@ -41,7 +57,7 @@ def logout():
 @app.route("/createpost")
 def createpost():
     if session.has_key("loggedIn") and session["loggedIn"]:
-	    return render_template("createpost.html", username = session["username"])
+        return render_template("createpost.html", username = session["username"])
     else:
         return redirect(url_for("login"))
 
