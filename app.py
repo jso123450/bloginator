@@ -35,7 +35,7 @@ def signup():
             if request.form["password"] != request.form["confirmPassword"]:
                 return render_template("signup.html", error = "Password does not match confirm password")
             else:
-                #Username and password should be added to the database here
+                db_methods.addUser(request.form["username"], request.form["password"])
                 session["loggedIn"] = True
                 session["username"] = request.form["username"]
                 return redirect(url_for("myposts"))
