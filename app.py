@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, session, redirect, url_for
+import db_methods
 
 app = Flask(__name__)
 
@@ -13,7 +14,7 @@ def blog():
 @app.route("/login", methods = ["GET", "POST"])
 def login():
     if request.form.has_key("username") and request.form.has_key("password"):
-        if request.form["username"] == "user1" and request.form["password"] == "pass1":
+        if db_methods.checkUser(request.form["username"], request.form["password"]):
             session["loggedIn"] = True
             session["username"] = request.form["username"]
             return redirect(url_for("blog"))
