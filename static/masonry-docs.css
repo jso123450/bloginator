@@ -256,10 +256,19 @@ two columns for large devices
 .item {
 	display: inline-block;
 	position:relative;
-	padding:  .25rem; 
-	/* border: 1px solid #dcdcdc;
-	border-radius:10px; */
-	margin:2%;
+	border: 1px solid #E8E8E8;
+	border-radius:10px;
+	/* padding:  .25rem; 
+	margin:2%; */
+	background-color:#E8E8E8;
+	width:100%;
+}
+
+@media only screen and (max-width: 999px) {
+  .item {
+	width:100%;
+	margin-bottom:3%;
+  }
 }
 
 .well {
@@ -272,11 +281,11 @@ two columns for large devices
 	z-index:9;
 	right:0;
 	position:absolute;
-	border: 1px solid #fff;
+	border: 1px solid #D3D3D3;
     border-radius: 300px;
 	padding:4px;
-	background-color:#f05f40;
-	color:#fff;
+	background-color:#D3D3D3;
+	color:#D3D3D3;
 }
 
 .img-container {
@@ -294,15 +303,14 @@ two columns for large devices
 .info {
 	width:100%;
 	height:auto;
-	text-align:left;
+	text-align:center;
 	font-size:125%;
 	display: block;
 	margin:0 auto;
-	background-color:#dcdcdc;
+	background-color:#E8E8E8;
 	overflow:hidden;
 	padding-left:10px;
 	padding-bottom:10px;
-	border:1px solid #fff;
 }
 
 .info a {
