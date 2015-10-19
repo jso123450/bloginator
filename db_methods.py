@@ -65,7 +65,6 @@ def getUserID(username):
     c = conn.cursor()
     q = "SELECT Username,UserID FROM users;"
     UserID = -1
-    print c.execute(q)
     for i in c.execute(q):
         if i[0] == username:
             UserID = i[1]
