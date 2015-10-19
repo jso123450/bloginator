@@ -4,13 +4,22 @@ import db_methods
 app = Flask(__name__)
 
 #This will be the general blog (before logging in)
-@app.route("/")
+@app.route("/", methods = ["GET", "POST"])
 def blog():
     blogs = db_methods.getPosts()
     if session.has_key("loggedIn") and session["loggedIn"]:
-        return render_template("blog.html", loggedIn = True, username = session["username"], blogs = blogs)
+        if request.form.has_key("BlogID"):
+            return render_template("blog.html", loggedIn = True, username = session["username"], blogs = blogs, editing = request.form["BlogID"])
+        else:
+            if request.form.has_key("edit"):
+                db_methods.editPost(request.form["edit"], request.form["editedID"])
+                blogs = db_methods.getPosts()
+            return render_template("blog.html", loggedIn = True, username = session["username"], blogs = blogs, editing = "-1")
     else:
-        return render_template("blog.html", loggedIn = False, blogs = blogs)
+        if request.form.has_key("BlogID"):
+            return redirect(url_for("login"))
+        else:
+            return render_template("blog.html", loggedIn = False, blogs = blogs)
 
 @app.route("/login", methods = ["GET", "POST"])
 def login():
@@ -49,8 +58,13 @@ def signup():
 @app.route("/myposts", methods = ["GET", "POST"])
 def myposts():
     if session.has_key("loggedIn") and session["loggedIn"]:
+        userPosts = db_methods.getUserPosts(session["username"])
         if request.form.has_key("post") and request.form["post"] != "":
             db_methods.addPost(request.form["title"], request.form["post"], session["username"])
+        elif request.form.has_key("BlogID"):
+            return render_template("myposts.html", username = session["username"], userPosts = userPosts, editing = request.form["BlogID"])
+        elif request.form.has_key("edit"):
+            db_methods.editUserPost(request.form["edit"], request.form["editedID"], session["username"])
         userPosts = db_methods.getUserPosts(session["username"])
         return render_template("myposts.html", username = session["username"], userPosts = userPosts)
     else:

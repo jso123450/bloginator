@@ -92,6 +92,31 @@ def addPost(title, post, user):
     conn.commit()
     conn.close()
 
+def editPost(content, BlogID):
+    conn = sqlite3.connect("blog.db")
+    c = conn.cursor()
+    q = "UPDATE blogs SET Content='" + content + "' WHERE BlogID=" + BlogID + ";"
+    c.execute(q)
+    conn.commit()
+    conn.close()
+
+def editUserPost(content, BlogID, username):
+    conn = sqlite3.connect("blog.db")
+    c = conn.cursor()
+    UserID = getUserID(username)
+    q = "SELECT BlogID,UserID FROM blogs;"
+    counter1 = -1
+    counter2 = -1
+    for i in c.execute(q):
+        counter2 += 1
+        if i[1] == UserID:
+            counter1 += 1
+            if counter1 == int(BlogID):
+                conn.commit()
+                conn.close()
+                editPost(content, str(counter2))
+                break
+
 def getPosts():
     conn = sqlite3.connect("blog.db")
     c = conn.cursor()

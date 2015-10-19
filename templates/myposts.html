@@ -96,28 +96,43 @@
 		<div id="main">
 		<!--Format for blog posts (Pinterest-style tiles)-->
 		<div class="grid">
-			<div class="post-row">
-				{% if userPosts %}
-				{% for i in userPosts %}
+		  <div class="post-row">
+			{% if userPosts %}
+			{% set c = 0 %}
+			{% for i in userPosts %}
 				<div class="item">
-					<div class="time-tag">{{username}}</div>
+					<span class="time-tag">
+							{{i[2]}}
+					</span>
 					<hr class="small" style="display:hidden;">
 					<div class="info">
 						<h2 class="post-title">{{i[0]}}</h2>
+						{% if editing == c|string %}
+						<textarea name="edit" form="editform">{{i[1]}}</textarea>
+						</div>
+					<form method="POST" id="editform">
+					  <input type="hidden" name="editedID" value="{{c}}">
+					  <input type="submit" name="submit" value="Edit">
+					</form>
+						{% else %}
 						<p class="post-subtitle">
 							{{i[1]}}
 						</p>
 					</div>
-					<a href="/login" class="btn btn-default">
-						Edit Post
-					</a>
+					<form method="POST">
+					  <input type="hidden" name="BlogID" value="{{c}}">
+					  <input type="submit" name="submit" value="Edit Post">
+					</form>
+					{% endif %}
 					<hr class="small" style="display:hidden;">
-                </div>
-				{% endfor %}
-				{% endif %}
-			</div>
+				</div>
+			{% set c = c + 1 %}
+			{% endfor %}
+			{% endif %}
 		</div>
-		</div>
+	</div>
+	
+	</div>
 	
 		<div id="sidebar">
 			<a href="/createpost" class="btn btn-default btn-xl">
@@ -133,13 +148,13 @@
   </div>
 
   <!-- jQuery -->
-  <script src="static/js/jquery.js"></script>
+  <script src="js/jquery.js"></script>
 
   <!-- Bootstrap Core JavaScript -->
-  <script src="static/js/bootstrap.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
 
   <!-- Custom Theme JavaScript -->
-  <script src="static/js/clean-blog.min.js"></script>
+  <script src="js/clean-blog.min.js"></script>
   
   <!--Masonry-->
   <script src="/js/masonry.pkgd.min.js"></script>
