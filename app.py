@@ -48,7 +48,8 @@ def myposts():
     if session.has_key("loggedIn") and session["loggedIn"]:
         if request.form.has_key("post") and request.form["post"] != "":
             db_methods.addPost(request.form["title"], request.form["post"], session["username"])
-        return render_template("myposts.html", username = session["username"])
+        userPosts = db_methods.getUserPosts(session["username"])
+        return render_template("myposts.html", username = session["username"], userPosts = userPosts)
     else:
         return redirect(url_for("login"))
 

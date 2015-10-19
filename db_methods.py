@@ -97,3 +97,17 @@ def getPosts():
     conn.commit()
     conn.close()
     return blogList
+
+def getUserPosts(username):
+    conn = sqlite3.connect("blog.db")
+    c = conn.cursor()
+    blogList = []
+    q = "SELECT Title,Content,UserID FROM blogs;"
+    for i in c.execute(q):
+        dbUsername = getUsername(i[2])
+        if username == dbUsername:
+            blog = [i[0], i[1]]
+            blogList.append(blog)
+    conn.commit()
+    conn.close()
+    return blogList
