@@ -30,21 +30,29 @@ def countUsers():
 def addUser(username, password):
     conn = sqlite3.connect("blog.db")
     c = conn.cursor()
-    alreadyExists = False
-    q = "SELECT Username FROM users;"
-    for i in c.execute(q):
-        if i[0] == username:
-            alreadyExists = True
-    if not alreadyExists:
-        q = "INSERT INTO users VALUES('" + username + "','" + password + "'," + str(countUsers()) + ");"
-        c.execute(q)
+    q = "INSERT INTO users VALUES('" + username + "','" + password + "'," + str(countUsers()) + ");"
+    c.execute(q)
     conn.commit()
     conn.close()
+
+def userExists(username):
+    conn = sqlite3.connect("blog.db")
+    c = conn.cursor()
+    q = "SELECT Username FROM users;"
+    ans = 0
+    for i in c.execute(q):
+        if i[0] == username:
+            ans = True
+    if ans != True:
+        ans = False
+    conn.commit()
+    conn.close()
+    return ans
 
 def countPosts():
     conn = sqlite3.connect("blog.db")
     c = conn.cursor()
-    q = "SELECT BlogID FROM blogs"
+    q = "SELECT BlogID FROM blogs;"
     numBlogs = 0
     for i in c.execute(q):
         numBlogs += 1
@@ -52,22 +60,35 @@ def countPosts():
     conn.close()
     return numBlogs
 
-def getID(username):
+def getUserID(username):
     conn = sqlite3.connect("blog.db")
     c = conn.cursor()
-    q = "SELECT * FROM users"
+    q = "SELECT Username,UserID FROM users;"
     UserID = -1
+    print c.execute(q)
     for i in c.execute(q):
         if i[0] == username:
-            UserID = i[2]
+            UserID = i[1]
     conn.commit()
     conn.close()
     return UserID
 
+def getUsername(ID):
+    conn = sqlite3.connect("blog.db")
+    c = conn.cursor()
+    q = "SELECT * FROM users;"
+    name = ""
+    for i in c.execute(q):
+        if i[2] == ID:
+            name = i[0]
+    conn.commit()
+    conn.close()
+    return name
+
 def addPost(title, post, user):
     conn = sqlite3.connect("blog.db")
     c = conn.cursor()
-    q = "INSERT INTO blogs VALUES('" + title + "','" + post + "'," + str(countPosts()) + "," + str(getID(user)) + ");"
+    q = "INSERT INTO blogs VALUES('" + title + "','" + post + "'," + str(countPosts()) + "," + str(getUserID(user)) + ");"
     c.execute(q)
     conn.commit()
     conn.close()
@@ -76,10 +97,25 @@ def getPosts():
     conn = sqlite3.connect("blog.db")
     c = conn.cursor()
     blogList = [] #A list of lists (smaller lists have title and content of one blog post)
-    q = "SELECT Title,Content FROM blogs"
+    q = "SELECT Title,Content,UserID FROM blogs;"
     for i in c.execute(q):
-        blog = [i[0], i[1]] #A list with the title and content
+        username = getUsername(i[2])
+        blog = [i[0], i[1], username] #A list with the title and content
         blogList.append(blog)
+    conn.commit()
+    conn.close()
+    return blogList
+
+def getUserPosts(username):
+    conn = sqlite3.connect("blog.db")
+    c = conn.cursor()
+    blogList = []
+    q = "SELECT Title,Content,UserID FROM blogs;"
+    for i in c.execute(q):
+        dbUsername = getUsername(i[2])
+        if username == dbUsername:
+            blog = [i[0], i[1]]
+            blogList.append(blog)
     conn.commit()
     conn.close()
     return blogList

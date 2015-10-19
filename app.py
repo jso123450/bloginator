@@ -8,7 +8,6 @@ app = Flask(__name__)
 def blog():
     if session.has_key("loggedIn") and session["loggedIn"]:
         blogs = db_methods.getPosts()
-        print blogs
         return render_template("blog.html", loggedIn = True, username = session["username"], blogs = blogs)
     else:
         return render_template("blog.html", loggedIn = False)
@@ -37,10 +36,13 @@ def signup():
             if request.form["password"] != request.form["confirmPassword"]:
                 return render_template("signup.html", error = "Password does not match confirm password")
             else:
-                db_methods.addUser(request.form["username"], request.form["password"])
-                session["loggedIn"] = True
-                session["username"] = request.form["username"]
-                return redirect(url_for("myposts"))
+                if not db_methods.userExists(request.form["username"]):
+                    db_methods.addUser(request.form["username"], request.form["password"])
+                    session["loggedIn"] = True
+                    session["username"] = request.form["username"]
+                    return redirect(url_for("myposts"))
+                else:
+                    return render_template("signup.html", error = "Username already exists")
         else:
             return render_template("signup.html")
 
@@ -49,7 +51,8 @@ def myposts():
     if session.has_key("loggedIn") and session["loggedIn"]:
         if request.form.has_key("post") and request.form["post"] != "":
             db_methods.addPost(request.form["title"], request.form["post"], session["username"])
-        return render_template("myposts.html", username = session["username"])
+        userPosts = db_methods.getUserPosts(session["username"])
+        return render_template("myposts.html", username = session["username"], userPosts = userPosts)
     else:
         return redirect(url_for("login"))
 
@@ -69,4 +72,4 @@ def createpost():
 if __name__ == "__main__":
     app.debug = True
     app.secret_key = "secret_key"
-    app.run()
+    app.run(host='0.0.0.0',port=8000)
