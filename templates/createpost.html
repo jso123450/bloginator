@@ -31,46 +31,46 @@
   <body>
     
     <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
-      <div class="container-fluid">
-	<!-- Brand and toggle get grouped for better mobile display -->
-	<div class="navbar-header page-scroll">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="/">Bloginator</a>
-	</div>
-
-	<!-- Collect the nav links, forms, and other content for toggling -->
-	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav navbar-right">
-            <li>
-	      <a href="/" target="_top">Home</a>
-	    </li>
-	    {% if session["loggedIn"] %}
-	    <li>
-	      <a href="/myposts" target="_top">My Posts</a>
-	    </li>
-	    <li>
-	      <a href="/createpost" target="_top">Create</a>
-	    </li>
-	    <li>
-	      <a href="/logout" target="_top">Logout</a>
-	    </li>
-	    {% else %}
-	    <li>
-	      <a href="/login" target="_top">Login</a>
-	    </li>
-	    {% endif %}
-	  </ul>
-	</div>
-	<!-- /.navbar-collapse -->
+   <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header page-scroll">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">Bloginator</a>
       </div>
-      <!-- /.container -->
-    </nav>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+         <ul class="nav navbar-nav navbar-right">
+          <li>
+	    <a href="/" target="_top">Home</a>
+	  </li>
+	  {% if session["loggedIn"] %}
+	  <li>
+	    <a href="/myposts" target="_top">My Posts</a>
+	  </li>
+	  <li>
+		<a href="/createpost" target="_top">Create</a>
+	  </li>
+	  <li>
+		<a href="/logout" target="_top">Logout</a>
+	  </li>
+	  {% else %}
+		<li>
+			<a href="/login" target="_top">Login</a>
+		</li>
+	  {% endif %}
+	</ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+  </nav>
 
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
@@ -95,9 +95,13 @@
 	<div class="col-lg-8 col-lg-offset-2 text-center">
 	  <h1>What do you want to say?</h1>
 	  <hr class="small">
-	  <input type="text" name="title" value="Post Title" form="postform">
+	  Post Title:
+	  <br>
+	  <input type="text" name="title" form="postform">
 	  <hr class="small">
-	  <textarea name="post" value="Post Content" form="postform" style="width:90%; height:500px;">
+	  Post Content:
+	  <br>
+	  <textarea name="post" form="postform" style="width:90%; height:500px;">
 	  </textarea>
 	  <form method="POST" action="myposts" id="postform" style="padding:5px;">
 	    <input type="submit" name="submit" value="Post">
