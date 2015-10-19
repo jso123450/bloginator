@@ -93,7 +93,6 @@
     <div class="row">
       <div class="text-center">
 	  
-	  <div id="returning">
 	{% if error %}
 	<style>
 	  input[type="text"], input[type="password"] {
@@ -111,32 +110,12 @@
 	  <br>
 	  <input type="password" name="password">
 	  <hr class="small" style="disply:hidden">
-	  <input type="submit" name="submit" value="Submit">
+	  <input type="submit" name="submit" value="Submit" class="btn btn-default">
+		<hr class="small" style="display:hidden;">
+		<a href="/signup" class="btn btn-default">
+			Create User
+		</a>
 	</form>
-	<hr class="small" style="disply:hidden">
-      </div>
-	  
-	  
-	  <div id="newuser">
-	  {% if error %}
-		{{error}}
-	  {% endif %}
-	<form method="POST" action="signup">
-	Username:
-	<br>
-	<input type="text" name="username">
-	<hr class="small" style="disply:hidden">
-	Password:
-	<br>
-	<input type="password" name="password">
-	<hr class="small" style="disply:hidden">
-	Confirm Password:
-	<br>
-	<input type="password" name="confirmPassword">
-	<hr class="small" style="disply:hidden">
-	<input type="submit" name="submit" value="Create">
-	</form>
-	</div>
 	  
 	 </div>
     </div>

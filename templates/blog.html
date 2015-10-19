@@ -105,7 +105,14 @@
 			{% if blogs %}
 			{% for i in blogs %}
 				<div class="item">
-					<div class="time-tag">{{i[2]}}</div>
+					<span class="time-tag">
+						{% if i[2] == None %}
+							ANON Y. MOUS
+						{% else %}
+							{{i[2]}}
+						{% endif %}
+					</span>
+					<hr class="small" style="display:hidden;">
 					<div class="info">
 						<h2 class="post-title">{{i[0]}}</h2>
 						<p class="post-subtitle">
@@ -139,10 +146,7 @@
 			</a>
 		{% endif %}
 	</div>
-<<<<<<< HEAD
 
-=======
->>>>>>> 2774179efc7c705766962a3511ce7c9889ab0c22
 	
       </div>
     </div>

@@ -258,9 +258,9 @@ two columns for large devices
 	position:relative;
 	border: 1px solid #D3D3D3;
 	border-radius:40px;
-	/* padding:  .25rem; 
-	margin:2%; */
-	back
+	/* padding:  .25rem; */
+	padding: 0 2% 0 0;
+	margin-bottom:5%;
 	width:100%;
 }
 
