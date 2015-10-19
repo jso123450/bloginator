@@ -18,11 +18,9 @@
   <!--Masonry-->
   <link href="css/masonry-docs.css" rel="stylesheet">
 	
-
-  <!-- favicon 
-       <link rel="shortcut icon" href="static/img/favicon.ico" type="image/x-icon">
-       <link rel="icon" href="static/img/favicon.ico" type="image/x-icon">
-       -->
+  <!--favicon-->
+  <link rel="shortcut icon" href="static/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="static/img/favicon.ico" type="image/x-icon">
   
   <!-- Custom Fonts -->
   <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -99,15 +97,48 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 text-center">
-	{% if loggedIn == False %}
-	<a href="/login" class="btn btn-default btn-xl" id="tologin">
-	  Come and Contribute!
-	</a>
-	{% endif %}
-	{% if loggedIn == True %}
-	<a href="/logout" class="btn btn-default btn-xl">
-	  Log out
-	</a>
+	
+	<div id="main">
+	<!--Format for blog posts (Pinterest-style tiles)
+	<div class="grid">
+		<div class="post-row">
+				<div class="item">
+					<a href="http://www.cambio.com/2015/08/04/builtbygirls-project-update-vlog-weve-done-things/" class="well">
+						<div class="img-container">
+							<img src="img/posts/collab5.jpg">
+						</div>
+						<div class="time-tag">August 4, 2015</div>
+						<div class="info">
+							<h2 class="post-title">
+								#BUILTBYGIRLS Project Update Vlog: We've Done Things!
+							</h2>
+							<h3 class="post-subtitle">
+								Another update from us interns, this time about our projects WOOT WOOT
+							</h3>
+						</div>
+					</a>
+                </div>
+		</div>
+	</div>
+	-->
+	</div>
+	
+	<div id="sidebar">
+		{% if loggedIn == False %}
+			<a href="/login" class="btn btn-default btn-xl">
+				Come and Contribute!
+			</a>
+		{% endif %}
+		{% if loggedIn == True %}
+			<a href="/create" class="btn btn-default btn-xl">
+				Create
+			</a>
+			<hr class="small" style="display:hidden">
+			<a href="/logout" class="btn btn-default btn-xl">
+				Log out
+			</a>
+		{% endif %}
+	</div>
 
 	{% if blogs %}
 	{% for i in blogs %}
@@ -119,12 +150,6 @@
 	{% endif %}
       
 	
-	{% endif %}
-	<!--
-	    <form action="login" method="POST">
-	      <input type="submit" name="submit" value="Login">
-	    </form>
-	    -->
       </div>
     </div>
   </div>

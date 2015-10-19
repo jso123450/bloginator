@@ -97,5 +97,3 @@ def getPosts():
     conn.commit()
     conn.close()
     return blogList
-
-print getUserID("user1")
