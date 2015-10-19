@@ -16,7 +16,7 @@
   <link href="static/clean-blog.min.css" rel="stylesheet">
   
   <!--Masonry-->
-  <link href="css/masonry-docs.css" rel="stylesheet">
+  <link href="static/masonry-docs.css" rel="stylesheet">
 	
   <!--favicon-->	
   <link rel="shortcut icon" href="static/img/favicon.ico" type="image/x-icon">
@@ -93,29 +93,35 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 text-center">
-		<h1>Create...</h1>
-	<a href="/createpost" class="btn btn-default btn-xl" id="tologin">
-	  Something New
-	</a>
+		<div id="main">
+		<!--Format for blog posts (Pinterest-style tiles)-->
+		<div class="grid">
+			<div class="post-row">
+				{% if userPosts %}
+				{% for i in userPosts %}
+				<div class="item">
+					<div class="time-tag">{{username}}</div>
+					<div class="info">
+						<h2 class="post-title">{{i[0]}}</h2>
+						<p class="post-subtitle">
+							{{i[1]}}
+						</p>
+					</div>
+                </div>
+				{% endfor %}
+				{% endif %}
+			</div>
+		</div>
+		</div>
 	
-	{% if userPosts %}
-	{% for i in userPosts %}
-	<h2 class="post-title">{{i[0]}}</h2>
-	{{i[1]}}
-	{% endfor %}
-	{% endif %}
-
-	<div id="sidebar">
-		{% if loggedIn == True %}
-			<a href="/create" class="btn btn-default btn-xl">
+		<div id="sidebar">
+			<a href="/createpost" class="btn btn-default btn-xl">
 				Create
 			</a>
-			<hr class="small" style="display:hidden">
 			<a href="/logout" class="btn btn-default btn-xl">
 				Log out
 			</a>
-		{% endif %}
-	</div>
+		</div>
 	
       </div>
     </div>

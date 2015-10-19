@@ -91,7 +91,9 @@
   <!-- Main Content -->
   <div class="container">
     <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 text-center">
+      <div class="text-center">
+	  
+	  <div id="returning">
 	{% if error %}
 	<style>
 	  input[type="text"], input[type="password"] {
@@ -104,16 +106,39 @@
 	  Username:
 	  <br>
 	  <input type="text" name="username">
-	  <br>
-	  <br>
+	  <hr class="small" style="disply:hidden">
 	  Password:
 	  <br>
 	  <input type="password" name="password">
-	  <br>
-	  <br>
+	  <hr class="small" style="disply:hidden">
 	  <input type="submit" name="submit" value="Submit">
 	</form>
+	<hr class="small" style="disply:hidden">
       </div>
+	  
+	  
+	  <div id="newuser">
+	  {% if error %}
+		{{error}}
+	  {% endif %}
+	<form method="POST" action="signup">
+	Username:
+	<br>
+	<input type="text" name="username">
+	<hr class="small" style="disply:hidden">
+	Password:
+	<br>
+	<input type="password" name="password">
+	<hr class="small" style="disply:hidden">
+	Confirm Password:
+	<br>
+	<input type="password" name="confirmPassword">
+	<hr class="small" style="disply:hidden">
+	<input type="submit" name="submit" value="Create">
+	</form>
+	</div>
+	  
+	 </div>
     </div>
   </div>
   

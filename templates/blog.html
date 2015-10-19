@@ -127,7 +127,7 @@
 			</a>
 		{% endif %}
 		{% if loggedIn == True %}
-			<a href="/create" class="btn btn-default btn-xl">
+			<a href="/createpost" class="btn btn-default btn-xl">
 				Create
 			</a>
 			<a href="/logout" class="btn btn-default btn-xl">
@@ -135,19 +135,6 @@
 			</a>
 		{% endif %}
 	</div>
-<<<<<<< HEAD
-=======
-
-	{% if blogs %}
-	{% for i in blogs %}
-	<h2 class="post-title">{{i[0]}}</h2>
-	{{i[1]}}
-	<br>
-	- {{i[2]}}
-	{% endfor %}
-	{% endif %}
-      
->>>>>>> 6528850470a388b7e31de4ce027044ae216ac1b8
 	
       </div>
     </div>

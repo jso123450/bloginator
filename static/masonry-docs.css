@@ -256,11 +256,11 @@ two columns for large devices
 .item {
 	display: inline-block;
 	position:relative;
-	border: 1px solid #E8E8E8;
-	border-radius:10px;
+	border: 1px solid #D3D3D3;
+	border-radius:40px;
 	/* padding:  .25rem; 
 	margin:2%; */
-	background-color:#E8E8E8;
+	back
 	width:100%;
 }
 
@@ -283,9 +283,9 @@ two columns for large devices
 	position:absolute;
 	border: 1px solid #D3D3D3;
     border-radius: 300px;
-	padding:4px;
+	padding:7px;
 	background-color:#D3D3D3;
-	color:#D3D3D3;
+	color:#00;
 }
 
 .img-container {
@@ -307,10 +307,7 @@ two columns for large devices
 	font-size:125%;
 	display: block;
 	margin:0 auto;
-	background-color:#E8E8E8;
 	overflow:hidden;
-	padding-left:10px;
-	padding-bottom:10px;
 }
 
 .info a {
@@ -321,7 +318,6 @@ two columns for large devices
 }
 
 .grid {
-  border-radius: 5px;
   width:100%;
   margin:0 auto;
 }
