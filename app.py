@@ -8,7 +8,6 @@ app = Flask(__name__)
 def blog():
     if session.has_key("loggedIn") and session["loggedIn"]:
         blogs = db_methods.getPosts()
-        print blogs
         return render_template("blog.html", loggedIn = True, username = session["username"], blogs = blogs)
     else:
         return render_template("blog.html", loggedIn = False)
