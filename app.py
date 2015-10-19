@@ -6,11 +6,11 @@ app = Flask(__name__)
 #This will be the general blog (before logging in)
 @app.route("/")
 def blog():
+    blogs = db_methods.getPosts()
     if session.has_key("loggedIn") and session["loggedIn"]:
-        blogs = db_methods.getPosts()
         return render_template("blog.html", loggedIn = True, username = session["username"], blogs = blogs)
     else:
-        return render_template("blog.html", loggedIn = False)
+        return render_template("blog.html", loggedIn = False, blogs = blogs)
 
 @app.route("/login", methods = ["GET", "POST"])
 def login():
