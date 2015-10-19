@@ -30,16 +30,24 @@ def countUsers():
 def addUser(username, password):
     conn = sqlite3.connect("blog.db")
     c = conn.cursor()
-    alreadyExists = False
-    q = "SELECT Username FROM users;"
-    for i in c.execute(q):
-        if i[0] == username:
-            alreadyExists = True
-    if not alreadyExists:
-        q = "INSERT INTO users VALUES('" + username + "','" + password + "'," + str(countUsers()) + ");"
-        c.execute(q)
+    q = "INSERT INTO users VALUES('" + username + "','" + password + "'," + str(countUsers()) + ");"
+    c.execute(q)
     conn.commit()
     conn.close()
+
+def userExists(username):
+    conn = sqlite3.connect("blog.db")
+    c = conn.cursor()
+    q = "SELECT Username FROM users;"
+    ans = 0
+    for i in c.execute(q):
+        if i[0] == username:
+            ans = True
+    if ans != True:
+        ans = False
+    conn.commit()
+    conn.close()
+    return ans
 
 def countPosts():
     conn = sqlite3.connect("blog.db")

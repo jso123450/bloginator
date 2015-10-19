@@ -36,10 +36,13 @@ def signup():
             if request.form["password"] != request.form["confirmPassword"]:
                 return render_template("signup.html", error = "Password does not match confirm password")
             else:
-                db_methods.addUser(request.form["username"], request.form["password"])
-                session["loggedIn"] = True
-                session["username"] = request.form["username"]
-                return redirect(url_for("myposts"))
+                if not db_methods.userExists(request.form["username"]):
+                    db_methods.addUser(request.form["username"], request.form["password"])
+                    session["loggedIn"] = True
+                    session["username"] = request.form["username"]
+                    return redirect(url_for("myposts"))
+                else:
+                    return render_template("signup.html", error = "Username already exists")
         else:
             return render_template("signup.html")
 
