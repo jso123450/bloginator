@@ -1,6 +1,11 @@
 import sqlite3
+import pymongo
+from pymongo import MongoClient
 
 #File for database methods (registering users, checking if users exist, etc.)
+
+connection = MongoClient()
+db = connection['database']
 
 def checkUser(username, password):
     conn = sqlite3.connect("blog.db")
@@ -16,6 +21,10 @@ def checkUser(username, password):
     conn.commit()
     conn.close()
 
+def checkUserMongo(username, password):
+    person = db.people.find({'un':username},{"_id":False})
+    return person['pw'] == password
+
 def countUsers():
     conn = sqlite3.connect("blog.db")
     c = conn.cursor()
@@ -27,6 +36,13 @@ def countUsers():
     conn.close()
     return numUsers
     
+def countUsersMongo():
+    people = db.people.find()
+    numUsers = 0
+    for i in people:
+        numUsers+= 1
+    return numUsers
+
 def addUser(username, password):
     conn = sqlite3.connect("blog.db")
     c = conn.cursor()
@@ -34,6 +50,10 @@ def addUser(username, password):
     c.execute(q)
     conn.commit()
     conn.close()
+
+def addUserMongo(username, password):
+    person = {'un':username,'pw':password,'id':str(countUsersMongo())+1}
+    db.people.insert(person)
 
 def userExists(username):
     conn = sqlite3.connect("blog.db")
