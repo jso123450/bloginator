@@ -23,7 +23,9 @@ def checkUser(username, password):
 
 def checkUserMongo(username, password):
     person = db.people.find({'un':username},{"_id":False})
-    return person['pw'] == password
+    for i in person:
+        return person['pw'] == password
+    return False
 
 def countUsers():
     conn = sqlite3.connect("blog.db")
