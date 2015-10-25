@@ -1,5 +1,8 @@
 <h1>Bloginator</h1>
 
+<hr> New README <hr>
+
+<hr> OLD README <hr>
 <h2>Created by:</h2>
 
 <p>Mark Kharakh <i>Leader</i> </p>
