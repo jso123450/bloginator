@@ -1,8 +1,21 @@
 <h1>Bloginator</h1>
 
-<hr> New README <hr>
+<hr> <h1> NEW </h1>
+<ul>
+ <li> Johnny So: Leader </li>
+ <li> Vivian Li: UX </li>
+ <li> Darwin Chiu: Middleware </li>
+ <li> Ishraq Bhuiyan: Backend </li>
+</ul>
 
-<hr> OLD README <hr>
+# Changelog
+ - Oct 22
+   - Forked original REPO
+ - Oct 23
+   - Started rewriting some SQLite db methods in Mongo
+      - checkUserMongo(un,pw) ; countUsersMongo() ; addUserMongo()
+
+<hr> <h1> ORIGINAL </h1>
 <h2>Created by:</h2>
 
 <p>Mark Kharakh <i>Leader</i> </p>
