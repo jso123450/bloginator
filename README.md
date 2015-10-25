@@ -8,7 +8,7 @@
  <li> Ishraq Bhuiyan: Backend </li>
 </ul>
 
-# Changelog
+<h2> Changelog </h2>
  - Oct 22
    - Forked original REPO
  - Oct 23
