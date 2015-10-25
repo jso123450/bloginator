@@ -2,10 +2,10 @@
 
 <hr> <h1> NEW </h1>
 <ul>
- <li> Johnny So: Leader </li>
- <li> Vivian Li: UX </li>
- <li> Darwin Chiu: Middleware </li>
- <li> Ishraq Bhuiyan: Backend </li>
+ <li> <b>Leader</b> : Johnny So </li>
+ <li> <b>UX</b> : Vivian Li </li>
+ <li> <b>Middleware</b> : Darwin Chiu </li>
+ <li> <b>Backend</b> : Ishraq Bhuiyan </li>
 </ul>
 
 <h2> Changelog </h2>
