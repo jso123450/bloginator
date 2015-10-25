@@ -14,6 +14,9 @@
  - Oct 23
    - Started rewriting some SQLite db methods in Mongo
       - checkUserMongo(un,pw) ; countUsersMongo() ; addUserMongo()
+ - Oct 25
+   - Added some more Mongo versions of functions in db_methods.py (now missing only editUserPost in Mongo form)
+      - userExistsMongo(username); countPostsMongo() ; getUserIDMongo(username) ; getUsernameMongo(ID) ; addPostMongo(title,post,user) ; editPostMongo(content,BlogID) ; getPostsMongo() ; getUserPostsMongo(username)
 
 <hr> <h1> ORIGINAL </h1>
 <h2>Created by:</h2>
