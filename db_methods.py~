@@ -149,7 +149,7 @@ def editPost(content, BlogID):
     conn.close()
 
 def editPostMongo(content,BlogID):
-    post = db.posts.find({'blogid':BlogID})
+    post = db.posts.find('blogid':BlogID)
     title = post['title']
     userid = post['userid']
     db.posts.update({'postid':BlogID},{'title':title,'content':content,'blogid':BlogID,'userid':userid})
