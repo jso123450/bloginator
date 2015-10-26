@@ -4,6 +4,7 @@ import db_methods
 app = Flask(__name__)
 
 #This will be the general blog (before logging in)
+#fork Test
 @app.route("/", methods = ["GET", "POST"])
 def blog():
     blogs = db_methods.getPosts()
