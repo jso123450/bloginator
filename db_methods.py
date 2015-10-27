@@ -23,9 +23,9 @@ def checkUser(username, password):
     conn.close()
 
 def checkUserMongo(username, password):
-    person = db.people.find({'un':username},{"_id":False})
+    person = db.people.find({'un':username},{"pw":password})
     for i in person:
-        return person['pw'] == password
+        return True
     return False
 
 def countUsers():
@@ -55,7 +55,7 @@ def addUser(username, password):
     conn.close()
 
 def addUserMongo(username, password):
-    person = {'un':username,'pw':password,'id':str(countUsersMongo())+1}
+    person = {'un':username,'pw':password,'id':str(countUsersMongo()+1)}
     db.people.insert(person)
 
 def userExists(username):
