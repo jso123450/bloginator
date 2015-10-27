@@ -1,21 +1,25 @@
 <!DOCTYPE HTML>
 
 <head>
-  {% block head %}
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>{% block title %}{% endblock %}Bloginator</title>
+  <title>{% block title %}Bloginator{% endblock %}</title>
 
   <!-- Bootstrap Core CSS -->
   <link href="static/bootstrap.min.css" rel="stylesheet">
 
   <!-- Custom CSS -->
   <link href="static/clean-blog.min.css" rel="stylesheet">
-	
+  
+  {% block masonry %}
+  <!--Masonry-->
+  <link href="static/masonry-docs.css" rel="stylesheet">
+  {% endblock %}
+
   <!--favicon-->
   <link rel="shortcut icon" href="static/img/favicon.ico" type="image/x-icon">
   <link rel="icon" href="static/img/favicon.ico" type="image/x-icon">
@@ -24,15 +28,10 @@
   <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-  {% endblock %}
-  
-  <!--Masonry-->
-  <link href="static/masonry-docs.css" rel="stylesheet">
-
 </head>
 
 <body>
-
+{% block body %}
   <!-- Navigation -->
   <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
     <div class="container-fluid">
@@ -163,6 +162,7 @@
       </div>
     </div>
   </div>
+{% endblock %}
 
   <!-- jQuery -->
   <script src="js/jquery.js"></script>
@@ -173,6 +173,7 @@
   <!-- Custom Theme JavaScript -->
   <script src="js/clean-blog.min.js"></script>
   
+  {% block masonry_js %}
   <!--Masonry-->
   <script src="/js/masonry.pkgd.min.js"></script>
   <script src="/js/masonry-docs.min"></script>
@@ -185,6 +186,6 @@
 	itemSelector: '.item'
   });
   </script>
-
+  {% endblock %}
 
 </body>
