@@ -1,5 +1,8 @@
 <h1>Bloginator</h1>
 
+TODO:
+ - editUserPostMongo()
+ - 
 <hr> <h1> NEW </h1>
 <ul>
  <li> <b>Leader</b> : Johnny So </li>

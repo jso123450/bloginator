@@ -171,6 +171,11 @@ def editUserPost(content, BlogID, username):
                 editPost(content, str(counter2))
                 break
 
+def editUserPostMongo(content, BlogID, username):
+    post = db.posts.find({'blogid':BlogID})
+    title = post['title']
+    userid = post['userid']
+    db.posts.update(
 def getPosts():
     conn = sqlite3.connect("blog.db")
     c = conn.cursor()
