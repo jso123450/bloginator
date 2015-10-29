@@ -1,11 +1,11 @@
 <!DOCTYPE HTML>
 <html lang="en">
-{% extends "blog.html" %}
-
-{% block title %}MyPosts{% endblock %}
-
-{% block body %}
-
+  {% extends "blog.html" %}
+  
+  {% block title %}MyPosts{% endblock %}
+  
+  {% block body %}
+  
   <!-- Page Header -->
   <!-- Set your background image for this header on the line below. -->
   <header class="intro-header" style="background-image: url('static/img/myposts-bg.jpg')">
@@ -27,60 +27,60 @@
   <div class="container">
     <div class="row">
       <div class="text-center">
-		<div id="main">
-		<!--Format for blog posts (Pinterest-style tiles)-->
-		<div class="grid">
-		  <div class="post-row">
-			{% if userPosts %}
-			{% set c = 0 %}
-			{% for i in userPosts %}
-				<div class="item">
-					<span class="time-tag">
-							{{i[2]}}
-					</span>
-					<hr class="small" style="display:hidden;">
-					<div class="info">
-						<h2 class="post-title">{{i[0]}}</h2>
-						{% if editing == c|string %}
-						<textarea name="edit" form="editform">{{i[1]}}</textarea>
-						</div>
-					<form method="POST" id="editform">
-					  <input type="hidden" name="editedID" value="{{c}}">
-					  <input type="submit" name="submit" value="Edit">
-					</form>
-						{% else %}
-						<p class="post-subtitle">
-							{{i[1]}}
-						</p>
-					</div>
-					<form method="POST">
-					  <input type="hidden" name="BlogID" value="{{c}}">
-					  <input type="submit" name="submit" value="Edit Post">
-					</form>
-					{% endif %}
-					<hr class="small" style="display:hidden;">
-				</div>
-			{% set c = c + 1 %}
-			{% endfor %}
-			{% endif %}
-		</div>
-	</div>
-	
-	</div>
-	
-		<div id="sidebar">
-			<a href="/createpost" class="btn btn-default btn-xl">
-				Create
-			</a>
-			<a href="/logout" class="btn btn-default btn-xl">
-				Log out
-			</a>
-		</div>
-	
+	<div id="main">
+	  <!--Format for blog posts (Pinterest-style tiles)-->
+	  <div class="grid">
+	    <div class="post-row">
+	      {% if userPosts %}
+	      {% set c = 0 %}
+	      {% for i in userPosts %}
+	      <div class="item">
+		<span class="time-tag">
+		  {{i[2]}}
+		</span>
 		<hr class="small" style="display:hidden;">
+		<div class="info">
+		  <h2 class="post-title">{{i[0]}}</h2>
+		  {% if editing == c|string %}
+		  <textarea name="edit" form="editform">{{i[1]}}</textarea>
+		</div>
+		<form method="POST" id="editform">
+		  <input type="hidden" name="editedID" value="{{i[2]}}">
+		  <input type="submit" name="submit" value="Edit">
+		</form>
+		{% else %}
+		<p class="post-subtitle">
+		  {{i[1]}}
+		</p>
+	      </div>
+	      <form method="POST">
+		<input type="hidden" name="BlogID" value="{{c}}">
+		<input type="submit" name="submit" value="Edit Post">
+	      </form>
+	      {% endif %}
+	      <hr class="small" style="display:hidden;">
+	    </div>
+	    {% set c = c + 1 %}
+	    {% endfor %}
+	    {% endif %}
+	  </div>
+	</div>
 	
       </div>
+      
+      <div id="sidebar">
+	<a href="/createpost" class="btn btn-default btn-xl">
+	  Create
+	</a>
+	<a href="/logout" class="btn btn-default btn-xl">
+	  Log out
+	</a>
+      </div>
+      
+      <hr class="small" style="display:hidden;">
+      
     </div>
   </div>
+</div>
 {% endblock %}
 
