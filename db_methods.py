@@ -1,12 +1,6 @@
 import sqlite3
-import pymongo
-from pymongo import MongoClient
 
 #File for database methods (registering users, checking if users exist, etc.)
-
-connection = MongoClient()
-db = connection['database']
-#collections: people, posts, comments
 
 def checkUser(username, password):
     conn = sqlite3.connect("blog.db")
@@ -22,12 +16,6 @@ def checkUser(username, password):
     conn.commit()
     conn.close()
 
-def checkUserMongo(username, password):
-    person = db.people.find({'un':username},{"pw":password})
-    for i in person:
-        return True
-    return False
-
 def countUsers():
     conn = sqlite3.connect("blog.db")
     c = conn.cursor()
@@ -39,13 +27,6 @@ def countUsers():
     conn.close()
     return numUsers
     
-def countUsersMongo():
-    people = db.people.find()
-    numUsers = 0
-    for i in people:
-        numUsers+= 1
-    return numUsers
-
 def addUser(username, password):
     conn = sqlite3.connect("blog.db")
     c = conn.cursor()
@@ -53,10 +34,6 @@ def addUser(username, password):
     c.execute(q)
     conn.commit()
     conn.close()
-
-def addUserMongo(username, password):
-    person = {'un':username,'pw':password,'id':str(countUsersMongo()+1)}
-    db.people.insert(person)
 
 def userExists(username):
     conn = sqlite3.connect("blog.db")
@@ -72,13 +49,6 @@ def userExists(username):
     conn.close()
     return ans
 
-def userExistsMongo(username):
-    person = db.people.find({'un':username})
-    #check if person is empty ?
-    for i in person:
-        return True
-    return False
-    
 def countPosts():
     conn = sqlite3.connect("blog.db")
     c = conn.cursor()
@@ -89,13 +59,6 @@ def countPosts():
     conn.commit()
     conn.close()
     return numBlogs
-
-def countPostsMongo():
-    posts = db.posts.find()
-    numPosts = 0
-    for i in posts:
-        numPosts+= 1
-    return numPosts
 
 def getUserID(username):
     conn = sqlite3.connect("blog.db")
@@ -109,10 +72,6 @@ def getUserID(username):
     conn.close()
     return UserID
 
-def getUserIDMongo(username):
-    person = db.people.find({'un':username})
-    return person['id']
-
 def getUsername(ID):
     conn = sqlite3.connect("blog.db")
     c = conn.cursor()
@@ -125,10 +84,6 @@ def getUsername(ID):
     conn.close()
     return name
 
-def getUsernameMongo(ID):
-    person = db.people.find({'id':ID})
-    return person['un']
-
 def addPost(title, post, user):
     conn = sqlite3.connect("blog.db")
     c = conn.cursor()
@@ -137,9 +92,6 @@ def addPost(title, post, user):
     conn.commit()
     conn.close()
 
-def addPostMongo(title,post,user):
-    db.posts.insert({'title':title,'content':post,'blogid':str(countPostsMongo()+1),'userid':getUserIDMongo(user)})
-
 def editPost(content, BlogID):
     conn = sqlite3.connect("blog.db")
     c = conn.cursor()
@@ -147,12 +99,6 @@ def editPost(content, BlogID):
     c.execute(q)
     conn.commit()
     conn.close()
-
-def editPostMongo(content,BlogID):
-    post = db.posts.find({'blogid':BlogID})
-    title = post['title']
-    userid = post['userid']
-    db.posts.update({'postid':BlogID},{'title':title,'content':content,'blogid':BlogID,'userid':userid})
 
 def editUserPost(content, BlogID, username):
     conn = sqlite3.connect("blog.db")
@@ -171,11 +117,6 @@ def editUserPost(content, BlogID, username):
                 editPost(content, str(counter2))
                 break
 
-def editUserPostMongo(content, BlogID, username):
-    post = db.posts.find({'blogid':BlogID})
-    title = post['title']
-    userid = post['userid']
-    db.posts.update(
 def getPosts():
     conn = sqlite3.connect("blog.db")
     c = conn.cursor()
@@ -187,15 +128,6 @@ def getPosts():
         blogList.append(blog)
     conn.commit()
     conn.close()
-    return blogList
-
-def getPostsMongo():
-    blogList = []
-    posts = db.posts.find()
-    for i in posts:
-        username = getUsernameMongo(i['userid'])
-        blog = [i['title'],i['content'],username]
-        blogList.append(blog)
     return blogList
 
 def getUserPosts(username):
@@ -210,11 +142,4 @@ def getUserPosts(username):
             blogList.append(blog)
     conn.commit()
     conn.close()
-    return blogList
-
-def getUserPostsMongo(username):
-    blogList = []
-    posts = db.posts.find({'un':username})
-    for i in posts:
-        blogList.append(i)
     return blogList
