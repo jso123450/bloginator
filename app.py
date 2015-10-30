@@ -66,7 +66,7 @@ def myposts():
         elif request.form.has_key("BlogID"):
             return render_template("myposts.html", username = session["username"], userPosts = userPosts, editing = request.form["BlogID"])
         elif request.form.has_key("edit"):
-            db_methods.editUserPostMongo(request.form["edit"], request.form["editedID"], session["username"])
+            db_methods.editPostMongo(request.form["edit"], request.form["editedID"])
         userPosts = db_methods.getUserPostsMongo(session["username"])
         return render_template("myposts.html", username = session["username"], userPosts = userPosts)
     else:
