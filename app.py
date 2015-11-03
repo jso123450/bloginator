@@ -2,8 +2,7 @@ from flask import Flask, render_template, request, session, redirect, url_for
 import db_methods
 
 app = Flask(__name__)
-#grg
-#hi this is darwin
+
 #This will be the general blog (before logging in)
 #fork Test
 @app.route("/", methods = ["GET", "POST"])
