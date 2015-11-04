@@ -1,7 +1,7 @@
 import sqlite3
 import pymongo
 from pymongo import MongoClient
-
+#why is it not merging with master
 #File for database methods (registering users, checking if users exist, etc.)
 
 connection = MongoClient()
