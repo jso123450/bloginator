@@ -156,7 +156,7 @@ def editPostMongo(content,BlogID):
     for doc in post:
         title = doc['title']
         userid = doc['userid']
-    db.posts.update({'blogid':str(int(BlogID)+1)},{'title':title,'content':content,'blogid':BlogID,'userid':userid})
+    db.posts.update({'blogid':str(int(BlogID)+1)},{'title':title,'content':content,'blogid':str(int(BlogID)+1),'userid':userid})
 
 def editUserPost(content, BlogID, username):
     conn = sqlite3.connect("blog.db")
