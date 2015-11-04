@@ -1,8 +1,8 @@
 <h1>Bloginator</h1>
 
 TODO:
- - editUserPostMongo()
- - 
+ - could fix the error with edit stemming from the original (can edit any post)
+
 <hr> <h1> NEW </h1>
 <ul>
  <li> <b>Leader</b> : Johnny So </li>
@@ -20,6 +20,9 @@ TODO:
  - Oct 25
    - Added some more Mongo versions of functions in db_methods.py (now missing only editUserPost in Mongo form)
       - userExistsMongo(username); countPostsMongo() ; getUserIDMongo(username) ; getUsernameMongo(ID) ; addPostMongo(title,post,user) ; editPostMongo(content,BlogID) ; getPostsMongo() ; getUserPostsMongo(username)
+ - Nov 3
+   - Fixed the last of the bugs with the Mongo functions
+   - Everything is fully functional now
 
 <hr> <h1> ORIGINAL </h1>
 <h2>Created by:</h2>
