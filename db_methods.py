@@ -150,11 +150,13 @@ def editPost(content, BlogID):
     conn.close()
 
 def editPostMongo(content,BlogID):
-    post = db.posts.find({'blogid':BlogID})
+    post = db.posts.find({'blogid':str(int(BlogID)+1)})
+    title = ""
+    userid = ""
     for doc in post:
         title = doc['title']
         userid = doc['userid']
-        db.posts.update({'title':title,'content':content,'blogid':BlogID,'userid':userid})
+    db.posts.update({'blogid':str(int(BlogID)+1)},{'title':title,'content':content,'blogid':BlogID,'userid':userid})
 
 def editUserPost(content, BlogID, username):
     conn = sqlite3.connect("blog.db")
@@ -174,17 +176,22 @@ def editUserPost(content, BlogID, username):
                 break
 
 def editUserPostMongo(content, BlogID, username):
-    UserID = getUserIDMongo(username)
-    post = db.posts.find({'blogid':BlogID})
-    counter1 = -1
-    counter2 = -1
+    post = db.posts.find({'blogid':str(int(BlogID)+1)})
     for doc in post:
-        counter2 = counter2+1
-        if doc['userid'] == UserID:
-            counter1 = counter1 + 1
-            if counter1 == int(BlogID):
-                editPost(content, str(counter2))
-                break
+        title = doc['title']
+        userid = doc['userid']
+        db.posts.update({'blogid':str(int(BlogID)+1)},{'title':title,'content':content,'blogid':str(int(BlogID)+1),'userid':userid})
+#    UserID = getUserIDMongo(username)
+#    post = db.posts.find({'blogid':BlogID})
+#    counter1 = -1
+#    counter2 = -1
+#    for doc in post:
+#        counter2 = counter2+1
+#        if doc['userid'] == UserID:
+#            counter1 = counter1 + 1
+#            if counter1 == int(BlogID):
+#                editPost(content, str(counter2))
+#                break
 
 def getPosts():
     conn = sqlite3.connect("blog.db")
