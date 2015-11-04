@@ -20,6 +20,8 @@ TODO:
  - Oct 25
    - Added some more Mongo versions of functions in db_methods.py (now missing only editUserPost in Mongo form)
       - userExistsMongo(username); countPostsMongo() ; getUserIDMongo(username) ; getUsernameMongo(ID) ; addPostMongo(title,post,user) ; editPostMongo(content,BlogID) ; getPostsMongo() ; getUserPostsMongo(username)
+ - Oct 30
+   - Jinja Inheritance with blocks is done
  - Nov 3
    - Fixed the last of the bugs with the Mongo functions
    - Everything is fully functional now
